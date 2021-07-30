@@ -5,6 +5,8 @@ A square number is an integer with an integer square root (0, 1, 4, 9, 16, 25, .
 
 This program provides all unique decompositions of an integer into square numbers, so that these add up to the provided number. 
 
+My mathematical intuition tells me that there is only one unique decomposition of a given size k and thus only one of each size is returned.
+
 Sample execution: `python3 square_decomposition_backtracking.py 25` (25 being the number to compute the decomposition for).
 
 The applied algorithmic principle is backtracking, consisting of the following main steps: 

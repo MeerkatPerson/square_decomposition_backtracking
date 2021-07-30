@@ -3,8 +3,6 @@ import collections
 
 import argparse
 
-results = dict()
-
 # Generate a list of all square numbers up until N.
 
 def get_candidates(N):
@@ -33,39 +31,16 @@ def backtracking(N, a, k, sum):
 
     if (sum == N and k == len(a)):
 
-        # make a deep copy of a
-
-        deep_copy = [x for x in a]
-
-        # if something is contained in a, check for duplicates
-
-        if results and len(a) in results:
-
-            for solution in results.get(len(a)):
-
-                if collections.Counter(a) == collections.Counter(solution):
-
-                    #print(f'Not storing solution {a} because permutation {solution} already existent!')
-
-                    return
-
         # print solution
         print(a)
 
-        # add solutions to results
-        if len(a) in results:
-
-            results.get(len(a)).append(deep_copy)
-
-        else:
-
-            results[len(a)] = [deep_copy]
-
+        return True
+        
     # If sum has exceeded N or k has exceeded a's bounds, stop
 
     elif (sum > N or k >= len(a)):
 
-        return
+        return False
 
     # else continue with procedure
 
@@ -83,7 +58,9 @@ def backtracking(N, a, k, sum):
 
                 a[k] = candidate
 
-                backtracking(N, a, k+1, sum+candidate)
+                if backtracking(N, a, k+1, sum+candidate): return True
+        
+        return False
 
 def find_square_combinations(N):
 
